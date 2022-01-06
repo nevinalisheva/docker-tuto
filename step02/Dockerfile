@@ -8,7 +8,6 @@ WORKDIR /app
 COPY package.json ./
 
 # Instruction to run to install
-RUN npm install -g nodemon
 RUN npm install 
 # We copy the curent folder to the curent folder on the FS of the container
 COPY . ./
