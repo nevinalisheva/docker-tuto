@@ -45,6 +45,8 @@ EXPOSE 3000
 CMD ["node", "app.js"]
 ```
 
-Once we have this file create, we simply have to run `docker build .` command to build the image.
+Once we have this file created, we simply have to run `docker build .` command to build the image.
 
-Once the image is build we can simply tun
+We can also give a name and a tag to the image by using `-t`, for instance `step01:v1`.
+
+Once the image is build, we can then simply run the image using `docker start [id/name]`.
