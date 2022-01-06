@@ -4,7 +4,6 @@ FROM node
 # Set the working directory
 WORKDIR /app
 
-
 # Copy package.json
 COPY package.json ./
 
@@ -18,4 +17,4 @@ COPY . ./
 EXPOSE 3000
 
 # Will be executed when the container start
-CMD ["node", "app.js"]
+CMD ["npm", "start"]
