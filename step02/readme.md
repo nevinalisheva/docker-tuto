@@ -61,10 +61,6 @@ When rebuilding an image, we don't necessarily want the `node_modules` to be cop
 
 Remember that our dockerfile is already installing the dependencies for us.
 
-### Exercice
-
-Let's create together a Dockerfile for a React Application !
-
 ## Volumes
 
 Now let's try something. We've created a route that you can call and that will create a file inside the container. We've also created a route that allow you to read the file.
