@@ -47,7 +47,7 @@ CMD ["node", "app.js"]
 
 Once we have this file created, we simply have to run `docker build .` command to build the image.
 
-We can also give a name and a tag to the image by using `-t`, for instance `step01:v1`.
+We can also give a name and a tag to the image by using `-t`, for instance `step02:v1`.
 
 Once the image is build, we can then simply run the image using `docker run (-d) -p 3000:3000 [id/name]`.
 
@@ -87,9 +87,9 @@ We can also list all the volumes using the list command:
 
 It's possible to attach a volume to a container using the flag `-v [volume-name]:[destination-path]` when running a container.
 
-Let's give it a try. Let's stop and remove our container `docker stop step01` - `docker rm step01` and let's recreate our container with a volume.
+Let's give it a try. Let's stop and remove our container `docker stop step02` - `docker rm step02` and let's recreate our container with a volume.
 
-`docker run -d -p 3000:3000 --name step01 -v step01volume:/app/src/files step01:v3`
+`docker run -d -p 3000:3000 --name step02 -v step02volume:/app/src/files step02:v1`
 
 Now when go to the route to create a file => `localhost:3000/createFile`. You should see now the file inside the volume in docker desktop.
 
@@ -113,6 +113,6 @@ To create a bind mount, instead of specifying the name of a volume, simply speci
 
 Let's give it a try with our app. Start by stopping and removing the container, then run this command:
 
-`docker run -d -p 3000:3000 --name step01 -v "$(pwd)/src":"/app/src" step01:v3`
+`docker run -d -p 3000:3000 --name step02 -v "$(pwd)/src":"/app/src" step02:v3`
 
 Now modify app.js and TADAM ! It work! Now try to call the route to create the file... Yeah! As you can see it work in both direction ;).

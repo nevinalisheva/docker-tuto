@@ -21,3 +21,6 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: examples
+      MYSQL_DATABASE: exampleDBs
+    ports:
+      - 3307:3306

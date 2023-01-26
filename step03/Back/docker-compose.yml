@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   npm:
     build: ./
@@ -13,3 +13,4 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: exampleDB

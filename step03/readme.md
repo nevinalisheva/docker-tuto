@@ -101,7 +101,7 @@ As we can see in the documentation for the MYSQL container to run, we need to pr
       MYSQL_ROOT_PASSWORD: example
 ```
 
-By default, mysql will run on the port `3306` if you want to change the port, you need to provide a `MYSQL_TCP_PORT` environment variable and map it to the port you want to use:
+By default, mysql will run on the port `3306` you can change the port by using the ports setting:
 
 ```
   mysql:
@@ -109,7 +109,8 @@ By default, mysql will run on the port `3306` if you want to change the port, yo
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_TCP_PORT: 3307
-    port: 3307:3307
+    ports:
+      - 3307:3306
 ```
 
 ### Volumes
@@ -145,3 +146,12 @@ For that you can bypass this by creating a volume for the node_modules so that t
       - ./Back:/app
       - /app/node_modules
 ```
+
+## Docker-compose main commands
+
+- Start the containers => `docker-compose up`
+- Stop the containers => `docker-compose down`
+- List the containers in the folder => `docker-compose ps`
+- Start a specific service => `docker-compose up [service-name]`
+- Check the containers logs => `docker-compose logs`
+- Check a specific container logs => `docker-compose logs [service]`
