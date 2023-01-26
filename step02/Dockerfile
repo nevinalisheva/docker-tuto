@@ -1,5 +1,5 @@
 # The image we want to uuse
-FROM node
+FROM node:12-alpine
 
 # Set the working directory
 WORKDIR /app
@@ -9,6 +9,7 @@ COPY package.json ./
 
 # Instruction to run to install
 RUN npm install 
+
 # We copy the curent folder to the curent folder on the FS of the container
 COPY . ./
 
