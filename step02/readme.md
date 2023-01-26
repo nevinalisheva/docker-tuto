@@ -49,4 +49,70 @@ Once we have this file created, we simply have to run `docker build .` command t
 
 We can also give a name and a tag to the image by using `-t`, for instance `step01:v1`.
 
-Once the image is build, we can then simply run the image using `docker start [id/name]`.
+Once the image is build, we can then simply run the image using `docker run (-d) -p 3000:3000 [id/name]`.
+
+### .dockerignore
+
+When rebuilding an image, we don't necessary want the `node_modules` to be copy again, it's very inneficient. To prevent that to happen, we can use a `.dockerignore` file and specify the file/folder that should be ignored when building the image.
+
+Remember than our dockerfile is already installing the dependencies for us.
+
+### Exercice
+
+Let's create together a Dockerfile for a React Application !
+
+## Volumes
+
+Now let's try something. We've created a route that you can call and that will create a file inside the container. We've also created a route that allow you to read the file.
+
+Let's call the route to create the file on our container `localhost:3000/createFile`. Now let's read it `localhost:3000/readFile`.
+
+Everything work! Nice. Now what do you think will happen if you remove the container and re-run a new container. Do you think the file will still be there?
+
+Unfortunately, no. But thanksfully, Docker has created Volume to help us solve this problem, so we can have a volume with the file that we will be able to mount on our containers.
+
+### Create a volume
+
+We can create a volume by using the command:
+
+`docker volume create [name]`
+
+Docker automatically creates a directory for the volume on the host under. This folder is difficult to localise on your local machine but you can view it using the Docker app.
+
+We can also list all the volumes using the list command:
+
+`docker volume list`
+
+### Mounting a volume
+
+It's possible to attach a volume to a container using the flag `-v [volume-name]:[destination-path]` when running a container.
+
+Let's give it a try. Let's stop and remove our container `docker stop step01` - `docker rm step01` and let's recreate our container with a volume.
+
+`docker run -d -p 3000:3000 --name step01 -v step01volume:/app/src/files step01:v3`
+
+Now when go to the route to create a file => `localhost:3000/createFile`. You should see now the file inside the volume in docker desktop.
+
+Now even if you delete the container, as soon as you mount the volume to it, the file will be present.
+
+### Bind mounts
+
+Now let's see another problem. Currently, if you try to change the `app.js` file, you need to rebuild the image and run a new container so that the changes are reflected on the container.
+
+Wouldn't it be nice if we could tell docker to bind our local folder with the container folder?
+
+It's possible thanks to the Bind Mount feature.
+
+A Bind Mount is a storage area (file/directory) on your local machine available inside your container. So any changes you make to this storage space (file/directory) from the outside container will be reflected inside the docker container and vice-versa.
+
+For example, if we want the files inside the `src` folder to be the same on our container as well as on our machine.
+
+To create a bind mount, instead of specifying the name of a volume, simply specify the path of your folder like so:
+
+`docker run -d -v "[localFolder]":"[containerfolder]"`
+
+Let's give it a try with our app. Start by stopping and removing the container, then run this command:
+
+`docker run -d -p 3000:3000 --name step01 -v "$(pwd)/src":"/app/src" step01:v3`
+
+Now modify app.js and TADAM ! It work! Now try to call the route to create the file... Yeah! As you can see it work in both direction ;).
