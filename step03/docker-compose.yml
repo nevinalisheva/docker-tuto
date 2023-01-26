@@ -5,8 +5,7 @@ services:
     container_name: app_frontend
     build: ./Front
     volumes:
-      - ./Front:/app
-      - /app/node_modules
+      - ./Front/src:/app/src
     ports:
       - 3001:3000
   backend:
@@ -21,4 +20,4 @@ services:
   mysql:
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: examples

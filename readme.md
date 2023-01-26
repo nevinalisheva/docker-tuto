@@ -12,12 +12,12 @@ In this section, you will learn what is docker and the basics command to pull an
 
 ## Step 02 - Dockerfile and image creation 🛳️
 
-In this section, we will learn how to create our own images using a dockerfile
+In this section, we will learn how to create our own images using a dockerfile.
 
 [Click here to go the section 02](https://github.com/lflachs/docker-tuto/tree/master/step02)
 
-## Step 03 - WIP Docker-compose 🏗️
+## Step 03 - Docker-compose 🏗️
 
-You can see an example using docker-compose in this section, the Readme file with all the explanations is a WIP.
+In this section, you will see how to use Docker-compose. s
 
 [Click here to go the section 03](https://github.com/lflachs/docker-tuto/tree/master/step03)
