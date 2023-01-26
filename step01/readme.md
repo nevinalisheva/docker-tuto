@@ -18,7 +18,7 @@ We have differents environment for Test production and dev. And it's hard to gua
 
 With Docker, it's possible to run each component in a separate container with separate environments.
 
-No matter which Os they have they can run docker and they are good to go.
+No matter which Os you have, you can run docker and you're good to go.
 
 ### Containers?
 
@@ -44,7 +44,7 @@ Give it a try, try to pull the mongodb image from docker hub.
 
 `docker pull nginx`
 
-Ghost is an open source blogging platform.
+Nginx is an opensource webserver it's used by a lot of companies. Webserver are used to send response to request. Nginx will manage the icoming internet traffic and send the right resources.
 
 ## List the images available
 
@@ -61,6 +61,7 @@ Your container is now running! If you open another terminal and type `docker ps`
 we can also see that nginx is running on the port 80 on our container.
 
 However, if you go to localhost:80, you won't be able to reach the container.
+
 This is because we need to choose a port on the Docker host and map it to a port on the container. This is done by using the flag `-p` followed by the machine port `:` and the container port.
 
 Ex: `docker run -p 8080:80 nginx` - We know that nginx docker image will run on 80 so we map the port 80 of this container to the port 8080 of our machine.
@@ -71,9 +72,11 @@ Now, if you go to localhost:8080, you should see the nginx server!
 
 When we stop the container, using ctrl + c or by closing the terminal, the container isn't deleted, we can restart the container by using its id.
 
-To find the id of a container, you can use the `docker ps -a` to list all the container - including the one that aren't running.
+To find the id of all running container, you can use the `docker ps` command. Then find the name of the container or id and run `docker stop [id]` to stop the container.
 
-Then simply find the id of the container and restart it using `docker start` followed by the container name.
+/!\ When a container is stopped it is not deleted, the container is simply stopped and you can restart it at all time.
+
+If you want to restart a stopped container, simply run `docker ps` with the `-a` flag to list all container - including the one that aren't running, and then simply find the id of the container and restart it using `docker start` followed by the container name.
 
 You will notice that, this time, we don't see the container's console, it's because by default, `docker start` run the container in detached mode (in the background). To run it in attach mode, simply add the `-a` flag.
 
@@ -89,13 +92,11 @@ As said previously, detach mode allow the container to run in the background. To
 
 Let's take another example than nginx!
 
-`docker run -p 3001:2368 -d ghost` will run a container with Ghost, an open source blogging platform.
+`docker run -p 3001:2368 -d ghost -e NODE_ENV=development` will run a container with Ghost, an open source blogging platform.
+
+Note: We use here the flag `-e` to setup environment variables. (in this case the NODE_ENV is needed to run the container)
 
 Simply wait a few seconds and open localhost:3001.
-
-## Attach to a running container
-
-You can attach yourself to a running container using `docker container attach [id]`
 
 ## Check the logs
 
@@ -123,3 +124,11 @@ If we run a container, by default, we cannot interact with them, let's see an ex
 `docker run --rm node`, when you run this container, you can see that nothing happen.
 
 Try again now with the flag `-it`
+
+## Attach to a running container
+
+You can attach yourself to a running container using `docker container attach [id]`
+
+Let's try it with a node container `docker run --rm -d --name some-node -it node`
+
+Then let's attach t the container `docker container attach some-node`

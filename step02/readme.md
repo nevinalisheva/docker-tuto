@@ -1,5 +1,9 @@
 # Docker 101 Step 02
 
+So far, we've been only using images created by other people on Dockerhub, but what if we want to create our own Docker images?
+
+For example if we have a node.js application with express. We don't need only node, we need node, but also to copy all the file from our project, to install the dependencies etc...
+
 ## Dockerfile
 
 Docker can build images automatically by reading the instructions from a Dockerfile.
@@ -53,9 +57,9 @@ Once the image is build, we can then simply run the image using `docker run (-d)
 
 ### .dockerignore
 
-When rebuilding an image, we don't necessary want the `node_modules` to be copy again, it's very inneficient. To prevent that to happen, we can use a `.dockerignore` file and specify the file/folder that should be ignored when building the image.
+When rebuilding an image, we don't necessarily want the `node_modules` to be copied again, this is very inefficient. To avoid this, we can use a `.dockerignore` file and specify the file/folder that should be ignored when building the image.
 
-Remember than our dockerfile is already installing the dependencies for us.
+Remember that our dockerfile is already installing the dependencies for us.
 
 ### Exercice
 
