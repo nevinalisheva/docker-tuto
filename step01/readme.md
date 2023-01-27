@@ -92,7 +92,7 @@ As said previously, detach mode allow the container to run in the background. To
 
 Let's take another example than nginx!
 
-`docker run -p 3001:2368 -d ghost -e NODE_ENV=development` will run a container with Ghost, an open source blogging platform.
+`docker run -p 3001:2368 -d -e NODE_ENV=development ghost` will run a container with Ghost, an open source blogging platform.
 
 Note: We use here the flag `-e` to setup environment variables. (in this case the NODE_ENV is needed to run the container)
 
